@@ -3,11 +3,11 @@ package p;
 import java.awt.*;
 import java.util.*;
 import java.awt.event.*;
-
 import javax.swing.*;
 
 public class Level_1 extends JLayeredPane implements MouseListener, ActionListener {
 
+    public int mist;
     public final static int FLOUR_RECIPE_AMOUNT = 112;
     public final static int CHEESE1_RECIPE_AMOUNT = 153;
     public final static int CHEESE2_RECIPE_AMOUNT = 73;
@@ -400,6 +400,7 @@ public class Level_1 extends JLayeredPane implements MouseListener, ActionListen
                 System.out.println("Milk failure!");
             }
             System.out.println("Всего совершено ошибок: " + mistakes);
+            mist = mistakes;
             if (layersContainer != null) {
                 layersContainer.showLayer(LayersContainer.Layer.LEVEL_1_1);
             }

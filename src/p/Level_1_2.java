@@ -84,10 +84,10 @@ public class Level_1_2 extends JLayeredPane implements MouseListener, ActionList
         endLabel.setVisible(false);
 
         timerLabel = new JLabel("");
-        timerLabel.setFont(new Font("Arial", Font.BOLD, 48));
+        timerLabel.setFont(new Font("Arial", Font.BOLD, 25));
         timerLabel.setForeground(Color.BLACK);
         timerLabel.setSize(200, 100);
-        timerLabel.setLocation(1100, 200);
+        timerLabel.setLocation(1200, 540);
         timerLabel.setVisible(false);
 
         setPreferredSize(new Dimension(backgroundIcon.getIconWidth(), backgroundIcon.getIconHeight()));
@@ -95,7 +95,7 @@ public class Level_1_2 extends JLayeredPane implements MouseListener, ActionList
 
         trayPos = new Point(250, 290);
         ovenPos = new Point(900, 300);
-        platePos = new Point(540, 500);
+        platePos = new Point(540, 450);
         knifePos = new Point(800, 600);
         basilPos = new Point(50, 500);
         oilPos = new Point(200, 500);

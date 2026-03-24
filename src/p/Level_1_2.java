@@ -42,7 +42,7 @@ public class Level_1_2 extends JLayeredPane implements MouseListener, ActionList
     private QuantityPopup temperaturePopup;
 
     public Level_1_2() {
-        backgroundIcon = new ImageIcon(getClass().getClassLoader().getResource("img/level1background.png"));
+        backgroundIcon = new ImageIcon(getClass().getClassLoader().getResource("img/Main_screen.png"));
 
         trayWithPizza = new NewProduct("tray_cheese2", true,
                 "img/tray_cheese2.png", "img/tray_cheese2.png",
@@ -76,7 +76,7 @@ public class Level_1_2 extends JLayeredPane implements MouseListener, ActionList
                 new Rectangle(28, 104, 54 - 28 + 1, 140 - 104 + 1),
                 new Rectangle(177, 152, 219 - 177 + 1, 174 - 152 + 1), this);
 
-        endLabel = new JLabel("Конец!");
+        endLabel = new JLabel("Конец!" /*+ mist*/);
         endLabel.setFont(new Font("Arial", Font.BOLD, 72));
         endLabel.setForeground(Color.RED);
         endLabel.setSize(300, 100);
@@ -136,7 +136,8 @@ public class Level_1_2 extends JLayeredPane implements MouseListener, ActionList
             quantityPopupShown = false;
             repaint();
             startCooking();
-        } else if (source == cookingTimer) {
+        }
+        else if (source == cookingTimer) {
             timeLeft--;
             timerLabel.setText(String.valueOf(timeLeft));
             if (timeLeft <= 0) {
@@ -264,6 +265,19 @@ public class Level_1_2 extends JLayeredPane implements MouseListener, ActionList
                 gameEnded = true;
                 endLabel.setVisible(true);
                 repaint();
+                // Создаем и добавляем слой Over
+                /*Over overLayer = new Over(layersContainer); // Передайте ваш контейнер
+                overLayer.setBounds(0, 0, getWidth(), getHeight());
+                add(overLayer);
+                overLayer.revalidate();
+                overLayer.repaint();*/
+                if(gameEnded = true){
+                    MistakeCounter mistakeCounter = MistakeCounter.getSharedInstance();
+                    int owenTemperature = temperaturePopup.getValue();
+                    //mistakeCounter.setOwenTemperature(owenTemperature);
+
+                    layersContainer.showLayer(LayersContainer.Layer.OVER);
+                }
             }
         }
     }

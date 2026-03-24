@@ -32,7 +32,8 @@ public class Level_1_1 extends JLayeredPane implements MouseListener {
     private boolean trayWithCheese2 = false;
 
     public Level_1_1() {
-        backgroundIcon = new ImageIcon(getClass().getClassLoader().getResource("img/level1background.png"));
+      //  backgroundIcon = new ImageIcon(getClass().getClassLoader().getResource("img/level1background.png"));
+        backgroundIcon = new ImageIcon(getClass().getClassLoader().getResource("img/Main_screen.png"));
 
         mixer = new NewProduct("mixer", true,
                 "img/mixer_tomato.png", "img/mixer_tomato.png",

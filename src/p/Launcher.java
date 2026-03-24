@@ -25,5 +25,6 @@ public class Launcher implements Runnable {
         frame.setSize(1360, 770);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
     }
 }

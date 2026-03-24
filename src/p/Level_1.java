@@ -1,4 +1,4 @@
-package p;
+/*package p;
 
 import java.awt.*;
 import java.util.*;
@@ -449,7 +449,7 @@ public class Level_1 extends JLayeredPane implements MouseListener, ActionListen
             System.out.println("Всего совершено ошибок: " + mistakes);
             mist = mistakes;*/
 
-           if (layersContainer != null) {
+     /*      if (layersContainer != null) {
                 layersContainer.showLayer(LayersContainer.Layer.LEVEL_1_1);
             }
         }
@@ -457,13 +457,13 @@ public class Level_1 extends JLayeredPane implements MouseListener, ActionListen
 
     @Override
     public void mouseClicked(MouseEvent event) {}
-}
+}*/
 
 
 
 
 
-/*
+
 package p;
 
 import java.awt.*;
@@ -877,7 +877,7 @@ public class Level_1 extends JLayeredPane implements MouseListener, ActionListen
             System.out.println("Всего совершено ошибок: " + mistakes);
             mist = mistakes;
              */
-      /*      if (layersContainer != null) {
+           if (layersContainer != null) {
                 layersContainer.showLayer(LayersContainer.Layer.LEVEL_1_1);
             }
         }
@@ -885,4 +885,4 @@ public class Level_1 extends JLayeredPane implements MouseListener, ActionListen
 
     @Override
     public void mouseClicked(MouseEvent event) {}
-}*/
+}

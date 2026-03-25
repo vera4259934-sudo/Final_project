@@ -36,6 +36,8 @@ public class Level_2 extends JLayeredPane implements MouseListener, ActionListen
 
    // private final NewProduct cup;
     private final NewProduct ice;
+    private final NewProduct ice2;
+    private final NewProduct ice3;
     private final NewProduct milk;
     private final NewProduct sugar;
     private final NewProduct tea;
@@ -48,6 +50,7 @@ public class Level_2 extends JLayeredPane implements MouseListener, ActionListen
     private final NewProduct random_tea;
     //private final NewProduct oil;
     private NewProduct cup;
+    private NewProduct cup1;
 
     private NewProduct boardWithCheese;
     private NewProduct boardWithCutCheese;
@@ -64,7 +67,7 @@ public class Level_2 extends JLayeredPane implements MouseListener, ActionListen
     public Level_2() {
 
         setLayout(null);
-        backgroundIcon = new ImageIcon(getClass().getClassLoader().getResource("img/cafe_screen.png"));
+        backgroundIcon = new ImageIcon(getClass().getClassLoader().getResource("img/cafe_screen_1.png"));
         //cupIcon = new ImageIcon(getClass().getClassLoader().getResource("img/cup.png"));
 
 
@@ -73,8 +76,14 @@ public class Level_2 extends JLayeredPane implements MouseListener, ActionListen
 
 
         ice = new NewProduct("ice", true,
-                "img/star.png", "img/ice_selected.png",
-                "img/ice.png", "img/ice.png");
+                "img/star.png", "img/star.png",
+                "img/star.png", "img/star.png");
+        ice2 = new NewProduct("ice2", true,
+                "img/kib.png", "img/kib.png",
+                "img/kib.png", "img/kib.png");
+        ice3= new NewProduct("ice3", true,
+                "img/heart.png", "img/heart.png",
+                "img/heart.png", "img/heart.png");
         milk = new NewProduct("milk", true,
                 "img/milkFull.png", "img/milkFullSelected.png",
                 "img/milkPartial.png", "img/milkPartialSelected.png");
@@ -90,6 +99,9 @@ public class Level_2 extends JLayeredPane implements MouseListener, ActionListen
         vanil = new NewProduct("vanil", true,
                 "img/vanil.png", "img/vanil_selected.png",
                 "img/vanil.png", "img/vanil_selected.png");
+        cup1 = new NewProduct("cup", false,
+                "img/cup.png", "img/cup.png",
+                "img/cup.png", "img/cup.png");
 
         cup = new NewProduct("cup", false,
                 "img/cup.png", "img/cup.png",
@@ -160,8 +172,14 @@ int d =  random.nextInt(2) + 1;
         setPreferredSize(new Dimension(backgroundIcon.getIconWidth(), backgroundIcon.getIconHeight()));
 
         add(ice);
-        ice.setBounds(50, 470, 250, 250);
+        ice.setBounds(670, 120, 250, 250);
         ice.addMouseListener(this);
+        add(ice2);
+        ice2.setBounds(820, 120, 250, 250);
+        ice2.addMouseListener(this);
+        add(ice3);
+        ice3.setBounds(957, 120, 250, 250);
+        ice3.addMouseListener(this);
         add(milk);
         milk.setBounds(200, 340, 170, 192);
         milk.addMouseListener(this);
@@ -177,6 +195,9 @@ int d =  random.nextInt(2) + 1;
         add(tea);
         tea.setBounds(1150, 410, 222, 208);
         tea.addMouseListener(this);
+
+        add(cup1);
+        cup1.setBounds(700, 500, 250, 300);
         //----------------------------------------------RANDOM
         add(cup);
         cup.setBounds(1100, 10, 250, 300);

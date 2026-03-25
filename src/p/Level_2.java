@@ -4,6 +4,7 @@ import java.awt.*;
 import java.util.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.util.Random;
 
 public class Level_2 extends JLayeredPane implements MouseListener, ActionListener {
 
@@ -13,10 +14,10 @@ public class Level_2 extends JLayeredPane implements MouseListener, ActionListen
 
 
     // Компонент, отвечающий за генерацию и отображение ингредиентов напитка
-    private Drunks generatedDrink;
+   // private Drunks generatedDrink;
 
     // Кнопка для генерации нового напитка
-    private JButton generateButton;
+  //  private JButton generateButton;
 
 
     // public static  int mist;
@@ -31,7 +32,7 @@ public class Level_2 extends JLayeredPane implements MouseListener, ActionListen
     }
 
     private final Icon backgroundIcon;
-    private final ImageIcon cupIcon;
+    //private final ImageIcon cupIcon;
 
    // private final NewProduct cup;
     private final NewProduct ice;
@@ -41,6 +42,10 @@ public class Level_2 extends JLayeredPane implements MouseListener, ActionListen
     private final NewProduct topioka;
     private final NewProduct vanil;
     private final NewProduct spoon;
+    private final NewProduct random_ice;
+    private final NewProduct random_topioka;
+    private final NewProduct random_trub;
+    private final NewProduct random_tea;
     //private final NewProduct oil;
     private NewProduct cup;
 
@@ -60,31 +65,15 @@ public class Level_2 extends JLayeredPane implements MouseListener, ActionListen
 
         setLayout(null);
         backgroundIcon = new ImageIcon(getClass().getClassLoader().getResource("img/cafe_screen.png"));
-        cupIcon = new ImageIcon(getClass().getClassLoader().getResource("img/cup.png"));
+        //cupIcon = new ImageIcon(getClass().getClassLoader().getResource("img/cup.png"));
 
-        //---------------------------------------------------------------
-        // Размер компонента Drunks.
-        int drinkComponentWidth = 300;
-        int drinkComponentHeight = 300;
-        generatedDrink.setPreferredSize(new Dimension(drinkComponentWidth, drinkComponentHeight));
 
-        // Позиция стакана.
-        int cupX = (getWidth() - cupIcon.getIconWidth()) / 2;
-        int cupY = getHeight() - cupIcon.getIconHeight() - 50;
 
-        // Позиция напитка внутри стакана.
-        // Используем фиксированные смещения, как требовалось.
-        int drinkX = cupX + 15;
-        int drinkY = cupY + 25;
-
-        // Установка позиции и размера для Drunks.
-        generatedDrink.setBounds(drinkX, drinkY, drinkComponentWidth, drinkComponentHeight);
-        add(generatedDrink);
-        //---------------------------------------------------------------
+        Random random = new Random();
 
 
         ice = new NewProduct("ice", true,
-                "img/kib.png", "img/ice_selected.png",
+                "img/star.png", "img/ice_selected.png",
                 "img/ice.png", "img/ice.png");
         milk = new NewProduct("milk", true,
                 "img/milkFull.png", "img/milkFullSelected.png",
@@ -96,7 +85,7 @@ public class Level_2 extends JLayeredPane implements MouseListener, ActionListen
                 "img/tea.png", "img/tea_selected.png",
                 "img/tea.png", "img/tea_selected.png");
         topioka = new NewProduct("topioka", true,
-                "img/topioka.png", "img/topioka_selected.png",
+                "img/topioka_brown.png", "img/topioka_selected.png",
                 "img/topioka.png", "img/topioka_selected.png");
         vanil = new NewProduct("vanil", true,
                 "img/vanil.png", "img/vanil_selected.png",
@@ -108,6 +97,24 @@ public class Level_2 extends JLayeredPane implements MouseListener, ActionListen
         spoon = new NewProduct("spoon", true,
                 "img/spoon.png", "img/spoon_selected.png",
                 "img/spoon.png", "img/spoon_selected.png");
+int a = random.nextInt(3) + 1;
+int b = random.nextInt(3) + 1;
+int c =  random.nextInt(3) + 1;
+int d =  random.nextInt(2) + 1;
+        //****************************RANDOM
+        random_ice = new NewProduct("random_ice", false,
+                "img/ice"+ a+ ".png", "img/ice"+a+ ".png",
+                "img/ice"+a+ ".png", "img/ice"+ a+ ".png");
+        random_topioka = new NewProduct("random_topioka", false,
+                "img/topioka"+b+ ".png", "img/topioka"+b+ ".png",
+                "img/topioka"+b+ ".png", "img/topioka"+b+ ".png");
+        random_trub = new NewProduct("random_trub", false,
+                "img/trubochka"+c+ ".png", "img/trubochka"+c+ ".png",
+                "img/trubochka"+c+ ".png", "img/trubochka"+c+ ".png");
+        random_tea = new NewProduct("random_trub", false,
+                "img/tea"+d+ ".png", "img/tea"+d+ ".png",
+                "img/tea"+d+ ".png", "img/tea"+d+ ".png");
+        //****************************RANDOM
 
 
         productsWithQuantityPopup.add(ice);
@@ -170,21 +177,25 @@ public class Level_2 extends JLayeredPane implements MouseListener, ActionListen
         add(tea);
         tea.setBounds(1150, 410, 222, 208);
         tea.addMouseListener(this);
+        //----------------------------------------------RANDOM
         add(cup);
-        cup.setBounds(1000, 10, 250, 300);//*********************************************************
+        cup.setBounds(1100, 10, 250, 300);
+        add(random_ice);
+        random_ice.setBounds(1100, 10, 250, 300);
+        add(random_topioka);
+        random_topioka.setBounds(1100, 10, 250, 300);
+        add(random_trub);
+        random_trub.setBounds(1100, 10, 250, 300);
+        add(random_tea);
+        random_tea.setBounds(1100, 10, 250, 300);
+        //***********************************************RANDOM
         add(spoon);
         spoon.setBounds(830, 600, 160, 160);
 
 
 
 
-        generatedDrink = new Drunks();
-       // cupIcon.setImage(1000, 10, 250, 300); // Предварительная отрисовка стакана
 
-        // Компонент generatedDrink размещается внутри стакана
-        // Позиция и размер настроены так, чтобы имитировать заполнение стакана
-        generatedDrink.setBounds(1000, 10, 250, 300); // Корректируйте по необходимости
-        add(generatedDrink);
            }
 
 
@@ -261,14 +272,14 @@ public class Level_2 extends JLayeredPane implements MouseListener, ActionListen
 
         backgroundIcon.paintIcon(this, g, 0, 0);
 
-        generatedDrink = new Drunks();
+        //generatedDrink = new Drunks();
         // cupIcon.setImage(1000, 10, 250, 300); // Предварительная отрисовка стакана
 
         // Компонент generatedDrink размещается внутри стакана
         // Позиция и размер настроены так, чтобы имитировать заполнение стакана
-        generatedDrink.setBounds(1000, 10, 250, 300); // Корректируйте по необходимости
-        add(generatedDrink);
-        generatedDrink.setPreferredSize(new Dimension(1000, 10));
+      //  generatedDrink.setBounds(1000, 10, 250, 300); // Корректируйте по необходимости
+      //  add(generatedDrink);
+        //generatedDrink.setPreferredSize(new Dimension(1000, 10));
     }
 
     @Override

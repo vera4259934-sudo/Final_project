@@ -34,6 +34,9 @@ public class Level_2 extends JLayeredPane implements MouseListener, ActionListen
 
     private final Icon backgroundIcon;
     //private final ImageIcon cupIcon;
+    Icon againButtonIcon = new ImageIcon(getClass().getClassLoader().getResource("img/again.png"));
+    JLabel playButton = new JLabel(againButtonIcon);
+
 
    // private final NewProduct cup;
     private final NewProduct ice;
@@ -58,6 +61,8 @@ public class Level_2 extends JLayeredPane implements MouseListener, ActionListen
     //private final NewProduct oil;
     private NewProduct cup;
     private NewProduct cup1;
+
+    private final Tool againArrow;
 
     private NewProduct boardWithCheese;
     private NewProduct boardWithCutCheese;
@@ -234,6 +239,15 @@ int d =  random.nextInt(2) + 1;
                 new Rectangle(177, 152, 219 - 177 + 1, 174 - 152 + 1), this));
 
         this.quantityPopups = Collections.unmodifiableMap(quantityPopupsMap);
+
+
+        againArrow = new Tool("again", false,
+                "img/again.png",
+                "img/again.png",
+                "img/again.png");
+        againArrow.addMouseListener(this);
+
+
         setPreferredSize(new Dimension(backgroundIcon.getIconWidth(), backgroundIcon.getIconHeight()));
 
         add(ice);
@@ -300,7 +314,8 @@ int d =  random.nextInt(2) + 1;
         add(spoon);
         spoon.setBounds(830, 600, 160, 160);
 
-
+        add(againArrow);
+        againArrow.setBounds(0, 0,  90, 90);
 
 
 
@@ -752,7 +767,16 @@ int d =  random.nextInt(2) + 1;
     }
 
     @Override
-    public void mouseClicked(MouseEvent event) {}
+    public void mouseClicked(MouseEvent event) {
+        Object source = event.getSource();
+        if(source == againArrow) {
+
+                layersContainer.showLayer(LayersContainer.Layer.LEVEL_2);
+
+        }
+    }
+    /*@Override
+    public void mouseClicked(MouseEvent event) {}*/
 //****************************************************************************************************************************************************************************
     // Метод для добавления продукта в стакан (или выполнения другого действия)
     public void addProduct(NewProduct product, int quantity) {

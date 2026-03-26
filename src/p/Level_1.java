@@ -1,4 +1,4 @@
-/*package p;
+package p;
 
 import java.awt.*;
 import java.util.*;
@@ -30,7 +30,8 @@ public class Level_1 extends JLayeredPane implements MouseListener, ActionListen
     private Tool mixer;
     private Tool board;
     private Tool grater;
-    private NewProduct dish;
+    //private NewProduct dish;
+    private Tool dish;
     private NewProduct spoon;
     private NewProduct knife;
     //private NewProduct boardWithCheese;
@@ -46,9 +47,10 @@ public class Level_1 extends JLayeredPane implements MouseListener, ActionListen
     private final Set<NewProduct> productsWithQuantityPopup = new HashSet<>();
     private final Map<NewProduct, QuantityPopup> quantityPopups;
     boolean quantityPopupShown;
+    private final Tool daleeArrow;
 
     public Level_1() {
-        backgroundIcon = new ImageIcon(getClass().getClassLoader().getResource("img/level1background.png"));
+        backgroundIcon = new ImageIcon(getClass().getClassLoader().getResource("img/Main_screen.png"));
 
         flour = new NewProduct("flour", true,
                 "img/flour.png", "img/flour_selected.png",
@@ -88,9 +90,13 @@ public class Level_1 extends JLayeredPane implements MouseListener, ActionListen
                 "img/board.png",
                 "img/board_selected.png",
                 "img/board_green.png");
-        dish = new NewProduct("dish", false,
-                "img/dish.png", "img/dish.png",
-                "img/dish.png", "img/dish.png");
+        //dish = new NewProduct("dish", false,
+        //        "img/dish.png", "img/dish.png",
+        //        "img/dish.png", "img/dish.png");
+        dish = new Tool("dish", false,
+                "img/dish.png",
+                "img/dish.png",
+                "img/dish_green.png");
         //grater = new NewProduct("grater", false,
         //        "img/grater.png", "img/grater.png",
         //        "img/grater.png", "img/grater.png");
@@ -145,6 +151,13 @@ public class Level_1 extends JLayeredPane implements MouseListener, ActionListen
                 new Rectangle(177, 152, 219 - 177 + 1, 174 - 152 + 1), this));
 
         this.quantityPopups = Collections.unmodifiableMap(quantityPopupsMap);
+
+        daleeArrow = new Tool("dalee", false,
+                "img/dalee2_bw.png",
+                "img/dalee2_bw.png",
+                "img/dalee2.png");
+        daleeArrow.addMouseListener(this);
+
         setPreferredSize(new Dimension(backgroundIcon.getIconWidth(), backgroundIcon.getIconHeight()));
 
         add(flour);
@@ -182,6 +195,10 @@ public class Level_1 extends JLayeredPane implements MouseListener, ActionListen
         add(knife);
         knife.setBounds(305, 630, 260, 50);
         knife.addMouseListener(this);
+
+        add(daleeArrow);
+        daleeArrow.setBounds(1100, 30, 150, 71);
+        //daleeArrow.setTargeted(true);
     }
 
 
@@ -211,24 +228,32 @@ public class Level_1 extends JLayeredPane implements MouseListener, ActionListen
                 amountEntered.put(product, newAmount);
                 System.out.println("\t" + product.getName() + ": " + quantityPopup.getValue());
 
-                if (product == cheese2) {
+                if (product == milk) {
+                    milkInDish = true;
+                }
+                else if(product == flour) {
+                    flourInDish = true;
+                }
+                else if(product == eggs) {
+                    eggsInDish = true;
+                }
+                else if (product == cheese2) {
                     remove(board);
                     boardWithCheese = new Tool("board_cheese_1", false,
                             "img/board_cheese_1.png",
-                            "img/board_cheese_1.png",
-                            "img/board"); //*******************
+                            "img/board_cheese_12_selected.png",
+                            "img/board_green.png");
                     boardWithCheese.setBounds(board.getBounds());
                     add(boardWithCheese);
                     this.board = boardWithCheese;
                     repaint();
                 }
-
-                if (product == cheese) {
+                else if (product == cheese) {
                     remove(grater);
                     Tool graterWithCheese = new Tool("grater_cheese", false,
                             "img/grater_cheese.png",
                             "img/grater_cheese_selected.png",
-                            "img/grater_cheese_selected.png");//*****************************
+                            "img/grater_green.png");
                     graterWithCheese.setBounds(grater.getBounds());
                     add(graterWithCheese);
                     this.grater = graterWithCheese;
@@ -236,8 +261,7 @@ public class Level_1 extends JLayeredPane implements MouseListener, ActionListen
                     //checkAndSwitchLevel();
                     repaint();
                 }
-
-                if (product == tomato) {
+                else if (product == tomato) {
                     remove(mixer);
                     Tool mixerWithTomato = new Tool("mixer_tomato", false,
                             "img/mixer_tomato.png",
@@ -250,7 +274,7 @@ public class Level_1 extends JLayeredPane implements MouseListener, ActionListen
                     //checkAndSwitchLevel();
                     repaint();
                 }
-                checkAndSwitchLevel();
+                checkDaleeAvailable();
                 return;
             }
         }
@@ -261,11 +285,34 @@ public class Level_1 extends JLayeredPane implements MouseListener, ActionListen
         backgroundIcon.paintIcon(this, g, 0, 0);
     }
 
-    @Override
-    public void mouseEntered(MouseEvent event) {}
+    private final Cursor HAND_CURSOR = new Cursor(Cursor.HAND_CURSOR);
+    private final Cursor DEFAULT_CURSOR = new Cursor(Cursor.DEFAULT_CURSOR);
 
     @Override
-    public void mouseExited(MouseEvent event) {}
+    public void mouseEntered(MouseEvent event) {
+        Object source = event.getSource();
+        if(source == daleeArrow) {
+            boolean daleeAvailable = tomatoInMixer &&
+                    milkInDish && eggsInDish && flourInDish &&
+                    cheeseCutOnBoard && cheeseInGrater;
+            if(daleeAvailable) {
+                daleeArrow.setCursor(HAND_CURSOR);
+            }
+        }
+    }
+
+    @Override
+    public void mouseExited(MouseEvent event) {
+        Object source = event.getSource();
+        if(source == daleeArrow) {
+            boolean daleeAvailable = tomatoInMixer &&
+                    milkInDish && eggsInDish && flourInDish &&
+                    cheeseCutOnBoard && cheeseInGrater;
+            if(daleeAvailable) {
+                daleeArrow.setCursor(DEFAULT_CURSOR);
+            }
+        }
+    }
 
     @Override
     public void mousePressed(MouseEvent event) {
@@ -278,6 +325,9 @@ public class Level_1 extends JLayeredPane implements MouseListener, ActionListen
         }
         else if (source == cheese2) {
             board.setTargeted(true);
+        }
+        else if (source == milk || source == flour || source == eggs) {
+            dish.setTargeted(true);
         }
     }
 
@@ -295,13 +345,13 @@ public class Level_1 extends JLayeredPane implements MouseListener, ActionListen
                     boardWithCutCheese = new Tool("board_cheese_12", false,
                             "img/board_cheese_12.png",
                             "img/board_cheese_12_selected.png",
-                            "img/board_cheese_12_green.png");
+                            "img/board_green.png");
                     boardWithCutCheese.setBounds(boardBounds);
                     add(boardWithCutCheese);
                     this.board = boardWithCutCheese;
                     this.boardWithCheese = null;
                     cheeseCutOnBoard = true;
-                    checkAndSwitchLevel();
+                    checkDaleeAvailable();
                     repaint();
                 } else {
                     knife.returnToOriginalLocation();
@@ -319,25 +369,34 @@ public class Level_1 extends JLayeredPane implements MouseListener, ActionListen
             int x = event.getX() + product.getX();
             int y = event.getY() + product.getY();
 
-            if (source == eggs && dish.getBounds().contains(x, y) && productsWithQuantityPopup.contains(product)) {
-                showQuantityPopup(eggs, x, y, event);
-                eggsInDish = true;
-                //checkAndSwitchLevel();
-                return;
+            if (source == eggs) {
+                dish.setTargeted(false);
+                if(dish.getBounds().contains(x, y) && productsWithQuantityPopup.contains(product)) {
+                    showQuantityPopup(eggs, x, y, event);
+                    //eggsInDish = true;
+                    //checkAndSwitchLevel();
+                    return;
+                }
             }
 
-            if (source == flour && dish.getBounds().contains(x, y) && productsWithQuantityPopup.contains(product)) {
-                showQuantityPopup(flour, x, y, event);
-                flourInDish = true;
-                //checkAndSwitchLevel();
-                return;
+            if (source == flour) {
+                dish.setTargeted(false);
+                if(dish.getBounds().contains(x, y) && productsWithQuantityPopup.contains(product)) {
+                    showQuantityPopup(flour, x, y, event);
+                    //flourInDish = true;
+                    //checkAndSwitchLevel();
+                    return;
+                }
             }
 
-            if (source == milk && dish.getBounds().contains(x, y) && productsWithQuantityPopup.contains(product)) {
-                showQuantityPopup(milk, x, y, event);
-                milkInDish = true;
-                //checkAndSwitchLevel();
-                return;
+            if (source == milk) {
+                dish.setTargeted(false);
+                if(dish.getBounds().contains(x, y) && productsWithQuantityPopup.contains(product)) {
+                    showQuantityPopup(milk, x, y, event);
+                    //milkInDish = true;
+                    //checkAndSwitchLevel();
+                    return;
+                }
             }
 
             if (source == tomato) {
@@ -377,9 +436,14 @@ public class Level_1 extends JLayeredPane implements MouseListener, ActionListen
         }
     }
 
-    private void checkAndSwitchLevel() {
+    private void checkDaleeAvailable() {
+        System.out.println(String.format("milk: %b, eggs: %b, flour: %b, tomato: %b, cheese1: %b, cheese2: %b",
+                milkInDish, eggsInDish, flourInDish, tomatoInMixer, cheeseInGrater, cheeseCutOnBoard));
         MistakeCounter mistakeCounter = MistakeCounter.getSharedInstance();
-        if (tomatoInMixer && cheeseCutOnBoard && cheeseInGrater && milkInDish && flourInDish && eggsInDish) {
+        boolean daleeAvailable = tomatoInMixer &&
+                milkInDish && flourInDish && eggsInDish &&
+                cheeseCutOnBoard && cheeseInGrater;
+        if (daleeAvailable) {
             int milkAmount = amountEntered.get(milk);
             mistakeCounter.setMilkAmount(milkAmount);
 
@@ -397,7 +461,7 @@ public class Level_1 extends JLayeredPane implements MouseListener, ActionListen
 
             int flourAmount = amountEntered.get(flour);
             mistakeCounter.setFlourAmount(flourAmount);
-          /*
+            /*
             int mistakes = 0;
             if(flourAmount == FLOUR_RECIPE_AMOUNT) {
                 System.out.println("Flour alright!");
@@ -447,23 +511,37 @@ public class Level_1 extends JLayeredPane implements MouseListener, ActionListen
                 System.out.println("Milk failure!");
             }
             System.out.println("Всего совершено ошибок: " + mistakes);
-            mist = mistakes;*/
+            mist = mistakes;
+             */
+            daleeArrow.setTargeted(true);
+            //layersContainer.showLayer(LayersContainer.Layer.LEVEL_1_1);
+        }
+    }
 
-     /*      if (layersContainer != null) {
+    @Override
+    public void mouseClicked(MouseEvent event) {
+        Object source = event.getSource();
+        if(source == daleeArrow) {
+            boolean daleeAvailable = tomatoInMixer &&
+                    milkInDish && eggsInDish && flourInDish &&
+                    cheeseCutOnBoard && cheeseInGrater;
+            if(daleeAvailable) {
                 layersContainer.showLayer(LayersContainer.Layer.LEVEL_1_1);
             }
         }
     }
 
-    @Override
-    public void mouseClicked(MouseEvent event) {}
-}*/
+    public static void main(String...args) {
+        JFrame f = new JFrame();
+        f.add(new Level_1());
+        f.setSize(1360, 770);
+        f.setVisible(true);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+}
 
 
-
-
-
-
+/*
 package p;
 
 import java.awt.*;
@@ -877,7 +955,7 @@ public class Level_1 extends JLayeredPane implements MouseListener, ActionListen
             System.out.println("Всего совершено ошибок: " + mistakes);
             mist = mistakes;
              */
-           if (layersContainer != null) {
+      /*     if (layersContainer != null) {
                 layersContainer.showLayer(LayersContainer.Layer.LEVEL_1_1);
             }
         }
@@ -885,4 +963,4 @@ public class Level_1 extends JLayeredPane implements MouseListener, ActionListen
 
     @Override
     public void mouseClicked(MouseEvent event) {}
-}
+}*/

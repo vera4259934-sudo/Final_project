@@ -58,7 +58,8 @@ public class LayersContainer extends JPanel {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent e) {
                     if (SwingUtilities.isLeftMouseButton(e)) {
-                        container.showLayer(Layer.FACT);
+
+                        container.showLayer(Layer.LEVEL_2);//****************************************************************************************
                     }
                 }
             });

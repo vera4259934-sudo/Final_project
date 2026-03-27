@@ -6,7 +6,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.util.Random;
 
-public class Level_2 extends JLayeredPane implements MouseListener, ActionListener {
+public class Level_2_2 extends JLayeredPane implements MouseListener, ActionListener {
 
     // Иконки для стакана и фона
     //private final ImageIcon cupIcon;
@@ -14,10 +14,10 @@ public class Level_2 extends JLayeredPane implements MouseListener, ActionListen
 
 
     // Компонент, отвечающий за генерацию и отображение ингредиентов напитка
-   // private Drunks generatedDrink;
+    // private Drunks generatedDrink;
 
     // Кнопка для генерации нового напитка
-  //  private JButton generateButton;
+    //  private JButton generateButton;
     // Стек для хранения истории действий пользователя
     private Stack<Map<NewProduct, Integer>> history = new Stack<>();
 
@@ -38,7 +38,7 @@ public class Level_2 extends JLayeredPane implements MouseListener, ActionListen
     JLabel playButton = new JLabel(againButtonIcon);
 
 
-   // private final NewProduct cup;
+    // private final NewProduct cup;
     private final NewProduct ice;
     private final NewProduct ice2;
     private final NewProduct ice3;
@@ -77,7 +77,7 @@ public class Level_2 extends JLayeredPane implements MouseListener, ActionListen
     private final Map<NewProduct, QuantityPopup> quantityPopups;
     boolean quantityPopupShown;
 
-    public Level_2() {
+    public Level_2_2() {
 
         setLayout(null);
         backgroundIcon = new ImageIcon(getClass().getClassLoader().getResource("img/cafe_screen_1.png"));
@@ -140,10 +140,10 @@ public class Level_2 extends JLayeredPane implements MouseListener, ActionListen
         spoon = new NewProduct("spoon", true,
                 "img/spoon.png", "img/spoon_selected.png",
                 "img/spoon.png", "img/spoon_selected.png");
-int a = random.nextInt(3) + 1;
-int b = random.nextInt(3) + 1;
-int c =  random.nextInt(3) + 1;
-int d =  random.nextInt(2) + 1;
+        int a = random.nextInt(3) + 1;
+        int b = random.nextInt(3) + 1;
+        int c =  random.nextInt(3) + 1;
+        int d =  random.nextInt(2) + 1;
         //****************************RANDOM
         random_ice = new NewProduct("random_ice", false,
                 "img/ice"+ a+ ".png", "img/ice"+a+ ".png",
@@ -247,9 +247,9 @@ int d =  random.nextInt(2) + 1;
                 "img/again.png",
                 "img/again.png");
         popitka = new Tool("popitka", false,
-                "img/popitka1.png",
-                "img/popitka1.png",
-                "img/popitka1.png");
+                "img/popitka2.png",
+                "img/popitka2.png",
+                "img/popitka2.png");
         againArrow.addMouseListener(this);
 
 
@@ -326,7 +326,7 @@ int d =  random.nextInt(2) + 1;
 
 
 
-           }
+    }
 
 
 
@@ -379,7 +379,7 @@ int d =  random.nextInt(2) + 1;
                     repaint();
                 }
 
-               if (product == ice) {
+                if (product == ice) {
                     //remove(cup1);
                     NewProduct graterWithCheese = new NewProduct("ice_in_cup", false,
                             "img/ice3.png", "img/ice3.png",
@@ -433,7 +433,7 @@ int d =  random.nextInt(2) + 1;
                     //checkAndSwitchLevel();
                     repaint();
                     //checkAndSwitchLevel();
-                                }
+                }
 
                 if (product == tea2) {
                     //  eggsInDish = true;
@@ -565,8 +565,8 @@ int d =  random.nextInt(2) + 1;
 
         // Компонент generatedDrink размещается внутри стакана
         // Позиция и размер настроены так, чтобы имитировать заполнение стакана
-      //  generatedDrink.setBounds(1000, 10, 250, 300); // Корректируйте по необходимости
-      //  add(generatedDrink);
+        //  generatedDrink.setBounds(1000, 10, 250, 300); // Корректируйте по необходимости
+        //  add(generatedDrink);
         //generatedDrink.setPreferredSize(new Dimension(1000, 10));
     }
 
@@ -623,7 +623,7 @@ int d =  random.nextInt(2) + 1;
             }
 
             if (source == ice2 && cup1.getBounds().contains(x, y) && productsWithQuantityPopup.contains(product)) {
-               showQuantityPopup(ice2, x, y, event);
+                showQuantityPopup(ice2, x, y, event);
 
                 return;
             }
@@ -684,7 +684,7 @@ int d =  random.nextInt(2) + 1;
 
             //********ТРУБОЧКИ**************************************************************
             if (source == trub1 && cup1.getBounds().contains(x, y) ) {
-           // if (product == trub1) {
+                // if (product == trub1) {
 //  eggsInDish = true;
                 NewProduct graterWithCheese = new NewProduct("trub1_in_cup", false,
                         "img/trubochka1.png", "img/trubochka1.png",
@@ -697,10 +697,10 @@ int d =  random.nextInt(2) + 1;
                 repaint();
                 //checkAndSwitchLevel();
             }
-        //}
+            //}
 
             if (source == trub2 && cup1.getBounds().contains(x, y) ) {
-           // if (product == trub2) {
+                // if (product == trub2) {
 //  eggsInDish = true;
                 NewProduct graterWithCheese = new NewProduct("trub2_in_cup", false,
                         "img/trubochka2.png", "img/trubochka2.png",
@@ -715,7 +715,7 @@ int d =  random.nextInt(2) + 1;
             }
 
             if (source == trub3 && cup1.getBounds().contains(x, y) ) {
-          //  if (product == trub3) {
+                //  if (product == trub3) {
 //  eggsInDish = true;
                 NewProduct graterWithCheese = new NewProduct("trub3_in_cup", false,
                         "img/trubochka3.png", "img/trubochka3.png",
@@ -767,7 +767,7 @@ int d =  random.nextInt(2) + 1;
             int flourAmount = amountEntered.get(ice);
             mistakeCounter.setFlourAmount(flourAmount);
             //****************************************************************************
-              if (layersContainer != null) {
+            if (layersContainer != null) {
                 layersContainer.showLayer(LayersContainer.Layer.LEVEL_1_1);
             }
         }
@@ -778,7 +778,7 @@ int d =  random.nextInt(2) + 1;
         Object source = event.getSource();
         if(source == againArrow) {
 
-                layersContainer.showLayer(LayersContainer.Layer.LEVEL_2_2);
+            layersContainer.showLayer(LayersContainer.Layer.LEVEL_2_3);
 
         }
     }

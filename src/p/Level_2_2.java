@@ -179,19 +179,24 @@ public class Level_2_2 extends JLayeredPane implements MouseListener, ActionList
                 new Rectangle(329, 104, 362 - 329 + 1, 140 - 104 + 1),
                 new Rectangle(28, 104, 54 - 28 + 1, 140 - 104 + 1),
                 new Rectangle(177, 152, 219 - 177 + 1, 174 - 152 + 1), this));
+        quantityPopupsMap.put(sugar, new QuantityPopup("sugar", 10, 1000, 200,
+                "img/sugar_quantity.png",
+                new Rectangle(329, 104, 362 - 329 + 1, 140 - 104 + 1),
+                new Rectangle(28, 104, 54 - 28 + 1, 140 - 104 + 1),
+                new Rectangle(177, 152, 219 - 177 + 1, 174 - 152 + 1), this));
         quantityPopupsMap.put(ice, new QuantityPopup("flour", 10, 1000, 200,
-                "img/flour_quantity.png",
+                "img/ice_quantity.png",
                 new Rectangle(329, 104, 362 - 329 + 1, 140 - 104 + 1),
                 new Rectangle(28, 104, 54 - 28 + 1, 140 - 104 + 1),
                 new Rectangle(177, 152, 219 - 177 + 1, 174 - 152 + 1), this));
 
         quantityPopupsMap.put(ice2, new QuantityPopup("flour", 10, 1000, 200,
-                "img/flour_quantity.png",
+                "img/ice_quantity.png",
                 new Rectangle(329, 104, 362 - 329 + 1, 140 - 104 + 1),
                 new Rectangle(28, 104, 54 - 28 + 1, 140 - 104 + 1),
                 new Rectangle(177, 152, 219 - 177 + 1, 174 - 152 + 1), this));
         quantityPopupsMap.put(ice3, new QuantityPopup("flour", 10, 1000, 200,
-                "img/flour_quantity.png",
+                "img/ice_quantity.png",
                 new Rectangle(329, 104, 362 - 329 + 1, 140 - 104 + 1),
                 new Rectangle(28, 104, 54 - 28 + 1, 140 - 104 + 1),
                 new Rectangle(177, 152, 219 - 177 + 1, 174 - 152 + 1), this));
@@ -199,31 +204,31 @@ public class Level_2_2 extends JLayeredPane implements MouseListener, ActionList
 
 
         quantityPopupsMap.put(topioka, new QuantityPopup("eggs", 1, 6, 1,
-                "img/egg_quantity.png",
+                "img/tapioka_quantity.png",
                 new Rectangle(329, 104, 362 - 329 + 1, 140 - 104 + 1),
                 new Rectangle(28, 104, 54 - 28 + 1, 140 - 104 + 1),
                 new Rectangle(177, 152, 219 - 177 + 1, 174 - 152 + 1), this));
 
 
         quantityPopupsMap.put(topioka2, new QuantityPopup("eggs", 1, 6, 1,
-                "img/egg_quantity.png",
+                "img/tapioka_quantity.png",
                 new Rectangle(329, 104, 362 - 329 + 1, 140 - 104 + 1),
                 new Rectangle(28, 104, 54 - 28 + 1, 140 - 104 + 1),
                 new Rectangle(177, 152, 219 - 177 + 1, 174 - 152 + 1), this));
         quantityPopupsMap.put(topioka3, new QuantityPopup("eggs", 1, 6, 1,
-                "img/egg_quantity.png",
+                "img/tapioka_quantity.png",
                 new Rectangle(329, 104, 362 - 329 + 1, 140 - 104 + 1),
                 new Rectangle(28, 104, 54 - 28 + 1, 140 - 104 + 1),
                 new Rectangle(177, 152, 219 - 177 + 1, 174 - 152 + 1), this));
 
         quantityPopupsMap.put(tea, new QuantityPopup("cheese", 1, 1000, 150,
-                "img/cheese_quantity.png",
+                "img/tea_quantity.png",
                 new Rectangle(329, 104, 362 - 329 + 1, 140 - 104 + 1),
                 new Rectangle(28, 104, 54 - 28 + 1, 140 - 104 + 1),
                 new Rectangle(177, 152, 219 - 177 + 1, 174 - 152 + 1), this));
 
         quantityPopupsMap.put(tea2, new QuantityPopup("cheese", 1, 1000, 150,
-                "img/cheese2_quantity.png",
+                "img/tea_quantity.png",
                 new Rectangle(329, 104, 362 - 329 + 1, 140 - 104 + 1),
                 new Rectangle(28, 104, 54 - 28 + 1, 140 - 104 + 1),
                 new Rectangle(177, 152, 219 - 177 + 1, 174 - 152 + 1), this));
@@ -234,7 +239,7 @@ public class Level_2_2 extends JLayeredPane implements MouseListener, ActionList
                 new Rectangle(28, 104, 54 - 28 + 1, 140 - 104 + 1),
                 new Rectangle(177, 152, 219 - 177 + 1, 174 - 152 + 1), this));*/
         quantityPopupsMap.put(vanil, new QuantityPopup("tomato", 1, 20, 1,
-                "img/tomato_quantity.png",
+                "img/vanil_quantity.png",
                 new Rectangle(329, 104, 362 - 329 + 1, 140 - 104 + 1),
                 new Rectangle(28, 104, 54 - 28 + 1, 140 - 104 + 1),
                 new Rectangle(177, 152, 219 - 177 + 1, 174 - 152 + 1), this));

@@ -782,7 +782,7 @@ int d =  random.nextInt(2) + 1;
         if(source == daleeArrow) {
             if (iceInCup&&teaInCup&&tapiokaInCup&&trubInCup&&vanilInCup&&sugarInCup&&milkInCup)
             {
-                layersContainer.showLayer(LayersContainer.Layer.LEVEL_2_2);
+                layersContainer.showLayer(LayersContainer.Layer.OVER_2);
             }
 
         }    }

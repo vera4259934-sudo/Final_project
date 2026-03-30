@@ -9,7 +9,7 @@ import javax.swing.*;
 
 public class LayersContainer extends JPanel {
     public enum Layer {
-        WELCOME, HOW_PLAY, FACT, RECIPE, LEVEL_1, LEVEL_1_1, LEVEL_1_2, OVER, FACT_2, RECIPE_2, LEVEL_2, LEVEL_2_2, LEVEL_2_3
+        WELCOME, HOW_PLAY, FACT, RECIPE, LEVEL_1, LEVEL_1_1, LEVEL_1_2, OVER, FACT_2, RECIPE_2, LEVEL_2, LEVEL_2_2, LEVEL_2_3, OVER_2, THANKS
     }
 
     protected final CardLayout cardLayout = new CardLayout();
@@ -29,6 +29,9 @@ public class LayersContainer extends JPanel {
         add(new How_play(this), String.valueOf(Layer.HOW_PLAY));
         add(new Level_2_2(), String.valueOf(Layer.LEVEL_2_2));
         add(new Level_2_3(), String.valueOf(Layer.LEVEL_2_3));
+        add(new Over_2(), String.valueOf(Layer.OVER_2));
+        add(new Thanks(), String.valueOf(Layer.THANKS));
+
 
     }
 
@@ -61,7 +64,7 @@ public class LayersContainer extends JPanel {
                 public void mouseClicked(java.awt.event.MouseEvent e) {
                     if (SwingUtilities.isLeftMouseButton(e)) {
 
-                        container.showLayer(Layer.LEVEL_2);//****************************************************************************************
+                        container.showLayer(Layer.FACT);//****************************************************************************************
                     }
                 }
             });

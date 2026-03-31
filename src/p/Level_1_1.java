@@ -373,10 +373,10 @@ public class Level_1_1 extends JLayeredPane implements MouseListener {
         }
         Rectangle trayBounds = tray.getBounds();
         if (source == dish /*&& !trayWithDough*/) {
-            System.out.println("Dish released");
+          //  System.out.println("Dish released");
             tray.setTargeted(false);
             if (tray.getBounds().contains(x, y)) {
-                System.out.println("\tinside");
+              //  System.out.println("\tinside");
                 remove(dish);
                 dish.removeMouseListener(this);
                 NewProduct emptyDish = new NewProduct("dish", false,
@@ -410,10 +410,10 @@ public class Level_1_1 extends JLayeredPane implements MouseListener {
         }
 
         else if (source == spoon && trayWith == TrayWith.DOUGH /*trayWithDough /*&& tray.getName().equals("tray_doagh_n")*/) {
-            System.out.println("Spoon on dough released");
+       //     System.out.println("Spoon on dough released");
             tray.setTargeted(false);
             if (tray.getBounds().contains(x, y)) {
-                System.out.println("\tinside");
+          //      System.out.println("\tinside");
                 remove(tray);
                 //NewProduct newTray = new NewProduct("tray_doagh", false,
                 //        "img/tray_doagh.png", "img/tray_doagh.png",
@@ -438,12 +438,12 @@ public class Level_1_1 extends JLayeredPane implements MouseListener {
         }
 
         else if (source == mixer /*&& trayWithDough /*&& !trayWithTomato && tray.getName().equals("tray_doagh")*/) {
-            System.out.println("Mixer released");
+           // System.out.println("Mixer released");
             tray.setTargeted(false);
             //Rectangle mixerBounds = mixer.getBounds();
             //if (mixerBounds.intersects(trayBounds)) {
             if (tray.getBounds().contains(x, y)) {
-                System.out.println("\tinside");
+               // System.out.println("\tinside");
                 remove(mixer);
                 mixer.removeMouseListener(this);
                 NewProduct emptyMixer = new NewProduct("mixer", false,
@@ -477,12 +477,12 @@ public class Level_1_1 extends JLayeredPane implements MouseListener {
         }
 
         else if (source == spoon && trayWith == TrayWith.TOMATO /*&& trayWithTomato /*&& tray.getName().equals("tray_tomato_n")*/) {
-            System.out.println("Spoon on tomato released");
+           // System.out.println("Spoon on tomato released");
             tray.setTargeted(false);
             //Rectangle spoonBounds = spoon.getBounds();
             //if (spoonBounds.intersects(trayBounds)) {
             if (tray.getBounds().contains(x, y)) {
-                System.out.println("\tinside");
+             //   System.out.println("\tinside");
                 remove(tray);
                 //NewProduct newTray = new NewProduct("tray_tomato", false,
                 //    "img/tray_tomato.png", "img/tray_tomato.png",
@@ -507,12 +507,12 @@ public class Level_1_1 extends JLayeredPane implements MouseListener {
         }
 
         else if (source == grater /* && trayWithTomato && !trayWithCheese1 /*&& tray.getName().equals("tray_tomato")*/) {
-            System.out.println("Grater released");
+          //  System.out.println("Grater released");
             tray.setTargeted(false);
             //Rectangle graterBounds = grater.getBounds();
             //if (graterBounds.intersects(trayBounds)) {
             if (tray.getBounds().contains(x, y)) {
-                System.out.println("\tinside");
+             //   System.out.println("\tinside");
                 remove(grater);
                 grater.removeMouseListener(this);
                 NewProduct emptyGrater = new NewProduct("grater", false,
@@ -546,12 +546,12 @@ public class Level_1_1 extends JLayeredPane implements MouseListener {
         }
 
         else if (source == board /* && trayWithCheese1 && !trayWithCheese2 /*&& tray.getName().equals("tray_cheese1")*/) {
-            System.out.println("Board released");
+           // System.out.println("Board released");
             tray.setTargeted(false);
             //Rectangle boardBounds = board.getBounds();
             //if (boardBounds.intersects(trayBounds)) {
             if (tray.getBounds().contains(x, y)) {
-                System.out.println("\tinside");
+              //  System.out.println("\tinside");
                 remove(board);
                 board.removeMouseListener(this);
                 NewProduct emptyBoard = new NewProduct("board", false,

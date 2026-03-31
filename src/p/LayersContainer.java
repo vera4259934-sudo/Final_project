@@ -9,10 +9,12 @@ import javax.swing.*;
 
 public class LayersContainer extends JPanel {
     public enum Layer {
-        WELCOME, HOW_PLAY, FACT, RECIPE, LEVEL_1, LEVEL_1_1, LEVEL_1_2, OVER, FACT_2, RECIPE_2, LEVEL_2, LEVEL_2_2, LEVEL_2_3, OVER_2, THANKS
+        WELCOME, HOW_PLAY, FACT, RECIPE, LEVEL_1, LEVEL_1_1, LEVEL_1_2, OVER, FACT_2, RECIPE_2, LEVEL_2, OVER_2, THANKS
     }
 
     protected final CardLayout cardLayout = new CardLayout();
+
+    final Over_2 over_2 = new Over_2();
 
     public LayersContainer() {
         setLayout(cardLayout);
@@ -27,9 +29,7 @@ public class LayersContainer extends JPanel {
         add(new RecipeLayer_2(this), String.valueOf(Layer.RECIPE_2));
         add(new Level_2(), String.valueOf(Layer.LEVEL_2));
         add(new How_play(this), String.valueOf(Layer.HOW_PLAY));
-        add(new Level_2_2(), String.valueOf(Layer.LEVEL_2_2));
-        add(new Level_2_3(), String.valueOf(Layer.LEVEL_2_3));
-        add(new Over_2(), String.valueOf(Layer.OVER_2));
+        add(over_2, String.valueOf(Layer.OVER_2));
         add(new Thanks(), String.valueOf(Layer.THANKS));
 
 
@@ -50,7 +50,7 @@ public class LayersContainer extends JPanel {
             Icon playButtonIcon2 = new ImageIcon(getClass().getClassLoader().getResource("img/How_play.png"));
             JLabel playButton = new JLabel(playButtonIcon);
             JLabel playButton2 = new JLabel(playButtonIcon2);
-           // int x = (backgroundIcon.getIconWidth() - playButtonIcon.getIconWidth()) / 2;
+            // int x = (backgroundIcon.getIconWidth() - playButtonIcon.getIconWidth()) / 2;
             playButton.setBounds(307, 160, playButtonIcon.getIconWidth(), playButtonIcon.getIconHeight());
             playButton2.setBounds(675, 160, playButtonIcon2.getIconWidth(), playButtonIcon.getIconHeight()); //     2
             setLayout(null);

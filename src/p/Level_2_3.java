@@ -1,4 +1,4 @@
-package p;
+/*package p;
 
 import java.awt.*;
 import java.util.*;
@@ -238,7 +238,7 @@ public class Level_2_3 extends JLayeredPane implements MouseListener, ActionList
                 new Rectangle(329, 104, 362 - 329 + 1, 140 - 104 + 1),
                 new Rectangle(28, 104, 54 - 28 + 1, 140 - 104 + 1),
                 new Rectangle(177, 152, 219 - 177 + 1, 174 - 152 + 1), this));*/
-        quantityPopupsMap.put(vanil, new QuantityPopup("tomato", 1, 20, 1,
+     /*   quantityPopupsMap.put(vanil, new QuantityPopup("tomato", 1, 20, 1,
                 "img/vanil_quantity.png",
                 new Rectangle(329, 104, 362 - 329 + 1, 140 - 104 + 1),
                 new Rectangle(28, 104, 54 - 28 + 1, 140 - 104 + 1),
@@ -371,7 +371,7 @@ public class Level_2_3 extends JLayeredPane implements MouseListener, ActionList
                     repaint();
                 }*/
 
-                if (product == sugar) {
+            /*    if (product == sugar) {
                     remove(cup1);
                     NewProduct graterWithCheese = new NewProduct("grater_cheese", false,
                             "img/cup.png", "img/cup.png",
@@ -554,7 +554,7 @@ public class Level_2_3 extends JLayeredPane implements MouseListener, ActionList
                     //checkAndSwitchLevel();
                     repaint();
                 }*/
-                checkAndSwitchLevel();
+      /*          checkAndSwitchLevel();
                 return;
             }
         }
@@ -616,7 +616,7 @@ public class Level_2_3 extends JLayeredPane implements MouseListener, ActionList
             return;
         }*/
 
-        if (source instanceof NewProduct) {
+      /*  if (source instanceof NewProduct) {
             NewProduct product = (NewProduct) source;
             int x = event.getX() + product.getX();
             int y = event.getY() + product.getY();
@@ -786,7 +786,7 @@ public class Level_2_3 extends JLayeredPane implements MouseListener, ActionList
     public void mouseClicked(MouseEvent event) {}*/
 //****************************************************************************************************************************************************************************
     // Метод для добавления продукта в стакан (или выполнения другого действия)
-    public void addProduct(NewProduct product, int quantity) {
+   /* public void addProduct(NewProduct product, int quantity) {
         // Сохраняем текущее состояние перед добавлением
         saveCurrentState();
         // Добавляем продукт (реализация зависит от игровой логики)
@@ -814,4 +814,4 @@ public class Level_2_3 extends JLayeredPane implements MouseListener, ActionList
     //*************************************************************************************************************************************************************************************
 }
 
-
+*/

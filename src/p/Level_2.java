@@ -14,10 +14,10 @@ public class Level_2 extends JLayeredPane implements MouseListener, ActionListen
 
 
     // Компонент, отвечающий за генерацию и отображение ингредиентов напитка
-   // private Drunks generatedDrink;
+    // private Drunks generatedDrink;
 
     // Кнопка для генерации нового напитка
-  //  private JButton generateButton;
+    //  private JButton generateButton;
     // Стек для хранения истории действий пользователя
     private Stack<Map<NewProduct, Integer>> history = new Stack<>();
 
@@ -30,6 +30,9 @@ public class Level_2 extends JLayeredPane implements MouseListener, ActionListen
     public void addNotify() {
         super.addNotify();
         this.layersContainer = (LayersContainer) SwingUtilities.getAncestorOfClass(LayersContainer.class, this);
+        if (layersContainer != null) {
+            layersContainer.over_2.setMistakeCounter2(mistakeCounter2);
+        }
     }
 
     private final Icon backgroundIcon;
@@ -38,7 +41,7 @@ public class Level_2 extends JLayeredPane implements MouseListener, ActionListen
     JLabel playButton = new JLabel(againButtonIcon);
 
 
-   // private final NewProduct cup;
+    // private final NewProduct cup;
     private final NewProduct ice;
     private final NewProduct ice2;
     private final NewProduct ice3;
@@ -63,7 +66,7 @@ public class Level_2 extends JLayeredPane implements MouseListener, ActionListen
     private NewProduct cup1;
 
     private final Tool againArrow;
-    private final Tool popitka;
+    //private final Tool popitka;
     private final Tool daleeArrow;
     private boolean trubInCup = false;
     private NewProduct boardWithCheese;
@@ -77,6 +80,7 @@ public class Level_2 extends JLayeredPane implements MouseListener, ActionListen
     private final Set<NewProduct> productsWithQuantityPopup = new HashSet<>();
     private final Map<NewProduct, QuantityPopup> quantityPopups;
     boolean quantityPopupShown;
+    private final MistakeCounter2 mistakeCounter2;
 
     public Level_2() {
 
@@ -141,10 +145,10 @@ public class Level_2 extends JLayeredPane implements MouseListener, ActionListen
         spoon = new NewProduct("spoon", true,
                 "img/spoon.png", "img/spoon_selected.png",
                 "img/spoon.png", "img/spoon_selected.png");
-int a = random.nextInt(3) + 1;
-int b = random.nextInt(3) + 1;
-int c =  random.nextInt(3) + 1;
-int d =  random.nextInt(2) + 1;
+        int a = random.nextInt(3) + 1;
+        int b = random.nextInt(3) + 1;
+        int c =  random.nextInt(3) + 1;
+        int d =  random.nextInt(2) + 1;
         //****************************RANDOM
         random_ice = new NewProduct("random_ice", false,
                 "img/ice"+ a+ ".png", "img/ice"+a+ ".png",
@@ -159,7 +163,52 @@ int d =  random.nextInt(2) + 1;
                 "img/tea"+d+ ".png", "img/tea"+d+ ".png",
                 "img/tea"+d+ ".png", "img/tea"+d+ ".png");
         //****************************RANDOM
-
+        Recipe_2.IceKind iceKind = null;
+        switch (a) {
+            case 1:
+                iceKind = Recipe_2.IceKind.ICE1;
+                break;
+            case 2:
+                iceKind = Recipe_2.IceKind.ICE2;
+                break;
+            case 3:
+                iceKind = Recipe_2.IceKind.ICE3;
+                break;
+        }
+        Recipe_2.TapiokaKind tapiokaKind = null;
+        switch (b) {
+            case 1:
+                tapiokaKind = Recipe_2.TapiokaKind.TAPIOKA1;
+                break;
+            case 2:
+                tapiokaKind = Recipe_2.TapiokaKind.TAPIOKA2;
+                break;
+            case 3:
+                tapiokaKind = Recipe_2.TapiokaKind.TAPIOKA3;
+                break;
+        }
+        Recipe_2.TrubKind trubKind = null;
+        switch (c) {
+            case 1:
+                trubKind = Recipe_2.TrubKind.TRUB1;
+                break;
+            case 2:
+                trubKind = Recipe_2.TrubKind.TRUB2;
+                break;
+            case 3:
+                trubKind = Recipe_2.TrubKind.TRUB3;
+                break;
+        }
+        Recipe_2.TeaKind teaKind = null;
+        switch (c) {
+            case 1:
+                teaKind = Recipe_2.TeaKind.TEA1;
+                break;
+            case 2:
+                teaKind = Recipe_2.TeaKind.TEA2;
+                break;
+        }
+        mistakeCounter2 = new MistakeCounter2(iceKind, teaKind, tapiokaKind, trubKind);
 
         productsWithQuantityPopup.add(ice);
         productsWithQuantityPopup.add(ice2);
@@ -175,71 +224,64 @@ int d =  random.nextInt(2) + 1;
         productsWithQuantityPopup.add(tea);
 
         Map<NewProduct, QuantityPopup> quantityPopupsMap = new HashMap<>();
-        quantityPopupsMap.put(milk, new QuantityPopup("milk", 10, 1000, 200,
+        quantityPopupsMap.put(milk, new QuantityPopup("milk", 10, 1000, 230,
                 "img/milk_quantity.png",
                 new Rectangle(329, 104, 362 - 329 + 1, 140 - 104 + 1),
                 new Rectangle(28, 104, 54 - 28 + 1, 140 - 104 + 1),
                 new Rectangle(177, 152, 219 - 177 + 1, 174 - 152 + 1), this));
-        quantityPopupsMap.put(sugar, new QuantityPopup("sugar", 10, 1000, 200,
+        quantityPopupsMap.put(sugar, new QuantityPopup("sugar", 0, 5, 1,
                 "img/sugar_quantity.png",
                 new Rectangle(329, 104, 362 - 329 + 1, 140 - 104 + 1),
                 new Rectangle(28, 104, 54 - 28 + 1, 140 - 104 + 1),
                 new Rectangle(177, 152, 219 - 177 + 1, 174 - 152 + 1), this));
-        quantityPopupsMap.put(ice, new QuantityPopup("flour", 10, 1000, 200,
+        quantityPopupsMap.put(ice, new QuantityPopup("ice", 0, 10, 5,
                 "img/ice_quantity.png",
                 new Rectangle(329, 104, 362 - 329 + 1, 140 - 104 + 1),
                 new Rectangle(28, 104, 54 - 28 + 1, 140 - 104 + 1),
                 new Rectangle(177, 152, 219 - 177 + 1, 174 - 152 + 1), this));
 
-        quantityPopupsMap.put(ice2, new QuantityPopup("flour", 10, 1000, 200,
+        quantityPopupsMap.put(ice2, new QuantityPopup("ice2", 0, 10, 5,
                 "img/ice_quantity.png",
                 new Rectangle(329, 104, 362 - 329 + 1, 140 - 104 + 1),
                 new Rectangle(28, 104, 54 - 28 + 1, 140 - 104 + 1),
                 new Rectangle(177, 152, 219 - 177 + 1, 174 - 152 + 1), this));
-        quantityPopupsMap.put(ice3, new QuantityPopup("flour", 10, 1000, 200,
+        quantityPopupsMap.put(ice3, new QuantityPopup("ice3", 0, 10, 5,
                 "img/ice_quantity.png",
                 new Rectangle(329, 104, 362 - 329 + 1, 140 - 104 + 1),
                 new Rectangle(28, 104, 54 - 28 + 1, 140 - 104 + 1),
                 new Rectangle(177, 152, 219 - 177 + 1, 174 - 152 + 1), this));
 
-
-
-        quantityPopupsMap.put(topioka, new QuantityPopup("eggs", 1, 6, 1,
+        quantityPopupsMap.put(topioka, new QuantityPopup("topioka", 0, 200, 110,
                 "img/tapioka_quantity.png",
                 new Rectangle(329, 104, 362 - 329 + 1, 140 - 104 + 1),
                 new Rectangle(28, 104, 54 - 28 + 1, 140 - 104 + 1),
                 new Rectangle(177, 152, 219 - 177 + 1, 174 - 152 + 1), this));
 
 
-        quantityPopupsMap.put(topioka2, new QuantityPopup("eggs", 1, 6, 1,
+        quantityPopupsMap.put(topioka2, new QuantityPopup("topioka2", 0, 200, 110,
                 "img/tapioka_quantity.png",
                 new Rectangle(329, 104, 362 - 329 + 1, 140 - 104 + 1),
                 new Rectangle(28, 104, 54 - 28 + 1, 140 - 104 + 1),
                 new Rectangle(177, 152, 219 - 177 + 1, 174 - 152 + 1), this));
-        quantityPopupsMap.put(topioka3, new QuantityPopup("eggs", 1, 6, 1,
+        quantityPopupsMap.put(topioka3, new QuantityPopup("topioka3", 0, 200, 110,
                 "img/tapioka_quantity.png",
                 new Rectangle(329, 104, 362 - 329 + 1, 140 - 104 + 1),
                 new Rectangle(28, 104, 54 - 28 + 1, 140 - 104 + 1),
                 new Rectangle(177, 152, 219 - 177 + 1, 174 - 152 + 1), this));
 
-        quantityPopupsMap.put(tea, new QuantityPopup("cheese", 1, 1000, 150,
+        quantityPopupsMap.put(tea, new QuantityPopup("tea", 0, 5, 1,
                 "img/tea_quantity.png",
                 new Rectangle(329, 104, 362 - 329 + 1, 140 - 104 + 1),
                 new Rectangle(28, 104, 54 - 28 + 1, 140 - 104 + 1),
                 new Rectangle(177, 152, 219 - 177 + 1, 174 - 152 + 1), this));
 
-        quantityPopupsMap.put(tea2, new QuantityPopup("cheese", 1, 1000, 150,
+        quantityPopupsMap.put(tea2, new QuantityPopup("tea2", 0, 5, 1,
                 "img/tea_quantity.png",
                 new Rectangle(329, 104, 362 - 329 + 1, 140 - 104 + 1),
                 new Rectangle(28, 104, 54 - 28 + 1, 140 - 104 + 1),
                 new Rectangle(177, 152, 219 - 177 + 1, 174 - 152 + 1), this));
-/*
-        quantityPopupsMap.put(sugar, new QuantityPopup("cheese2", 1, 1000, 125,
-                "img/cheese2_quantity.png",
-                new Rectangle(329, 104, 362 - 329 + 1, 140 - 104 + 1),
-                new Rectangle(28, 104, 54 - 28 + 1, 140 - 104 + 1),
-                new Rectangle(177, 152, 219 - 177 + 1, 174 - 152 + 1), this));*/
-        quantityPopupsMap.put(vanil, new QuantityPopup("tomato", 1, 20, 1,
+
+        quantityPopupsMap.put(vanil, new QuantityPopup("vanilla", 0, 5, 2,
                 "img/vanil_quantity.png",
                 new Rectangle(329, 104, 362 - 329 + 1, 140 - 104 + 1),
                 new Rectangle(28, 104, 54 - 28 + 1, 140 - 104 + 1),
@@ -247,15 +289,14 @@ int d =  random.nextInt(2) + 1;
 
         this.quantityPopups = Collections.unmodifiableMap(quantityPopupsMap);
 
-
         againArrow = new Tool("again", false,
                 "img/again.png",
                 "img/again.png",
                 "img/again.png");
-        popitka = new Tool("popitka", false,
-                "img/popitka1.png",
-                "img/popitka1.png",
-                "img/popitka1.png");
+//        popitka = new Tool("popitka", false,
+//            "img/popitka1.png",
+//            "img/popitka1.png",
+//            "img/popitka1.png");
         againArrow.addMouseListener(this);
 
         daleeArrow = new Tool("dalee", false,
@@ -266,7 +307,6 @@ int d =  random.nextInt(2) + 1;
 
         add(daleeArrow);
         daleeArrow.setBounds(1100, 650, 150, 71);
-
 
         setPreferredSize(new Dimension(backgroundIcon.getIconWidth(), backgroundIcon.getIconHeight()));
 
@@ -318,7 +358,7 @@ int d =  random.nextInt(2) + 1;
         tea2.addMouseListener(this);
 
         add(cup1);
-        cup1.setBounds(500, 140, 250, 300);
+        cup1.setBounds(500, 180, 250, 300);
         //----------------------------------------------RANDOM
         add(cup);
         cup.setBounds(1100, 10, 250, 300);
@@ -336,19 +376,14 @@ int d =  random.nextInt(2) + 1;
 
         add(againArrow);
         againArrow.setBounds(0, 0,  70, 70);
-        add(popitka);
-        popitka.setBounds(80, 12, 100, 30);
-
-
-
-           }
-
-
+        //add(popitka);
+        //popitka.setBounds(80, 12, 100, 30);
+    }
 
     @Override
     public void actionPerformed(ActionEvent event) {
         Object source = event.getSource();
-        System.out.println("actionPerformed from " + source);
+      //System.out.println("actionPerformed from " + source);
         for (Map.Entry<NewProduct, QuantityPopup> entry : quantityPopups.entrySet()) {
             NewProduct product = entry.getKey();
             QuantityPopup quantityPopup = entry.getValue();
@@ -358,7 +393,7 @@ int d =  random.nextInt(2) + 1;
                 repaint();
                 product.setPartialSize();
                 product.returnToOriginalLocation();
-                System.out.println(product.getName() + ": " + quantityPopup.getValue());
+          //    System.out.println(product.getName() + ": " + quantityPopup.getValue());
                 int newAmount;
                 if(amountEntered.containsKey(product)) {
                     newAmount = amountEntered.get(product);
@@ -368,18 +403,7 @@ int d =  random.nextInt(2) + 1;
                     newAmount = quantityPopup.getValue();
                 }
                 amountEntered.put(product, newAmount);
-                System.out.println("\t" + product.getName() + ": " + quantityPopup.getValue());
-
-               /* if (product == cheese2) {
-                    remove(board);
-                    boardWithCheese = new NewProduct("board_cheese_1", false,
-                            "img/board_cheese_1.png", "img/board_cheese_1.png",
-                            "img/board_cheese_1.png", "img/board_cheese_1.png");
-                    boardWithCheese.setBounds(board.getBounds());
-                    add(boardWithCheese);
-                    this.board = boardWithCheese;
-                    repaint();
-                }*/
+      //        System.out.println("\t" + product.getName() + ": " + quantityPopup.getValue());
 
                 if (product == sugar) {
                     remove(cup1);
@@ -394,7 +418,7 @@ int d =  random.nextInt(2) + 1;
                     repaint();
                 }
 
-               if (product == ice) {
+                if (product == ice) {
                     //remove(cup1);
                     NewProduct graterWithCheese = new NewProduct("ice_in_cup", false,
                             "img/ice3.png", "img/ice3.png",
@@ -417,7 +441,8 @@ int d =  random.nextInt(2) + 1;
                     this.cup1 = graterWithCheese;
                     //  cheeseInGrater = true;
                     //checkAndSwitchLevel();
-                    iceInCup = true;                    repaint();
+                    iceInCup = true;
+                    repaint();
                     //checkAndSwitchLevel();
                 }
 
@@ -444,11 +469,11 @@ int d =  random.nextInt(2) + 1;
                     graterWithCheese.setBounds(cup1.getBounds());
                     add(graterWithCheese);
                     this.cup1 = graterWithCheese;
-                   teaInCup = true;
+                    teaInCup = true;
                     //checkAndSwitchLevel();
                     repaint();
                     //checkAndSwitchLevel();
-                                }
+                }
 
                 if (product == tea2) {
                     //  eggsInDish = true;
@@ -472,7 +497,7 @@ int d =  random.nextInt(2) + 1;
                     graterWithCheese.setBounds(cup1.getBounds());
                     add(graterWithCheese);
                     this.cup1 = graterWithCheese;
-                   tapiokaInCup = true;
+                    tapiokaInCup = true;
                     //checkAndSwitchLevel();
                     repaint();
                     //checkAndSwitchLevel();
@@ -552,19 +577,7 @@ int d =  random.nextInt(2) + 1;
 
 // ********ТРУБОЧКИ**************************************************************
 
-               /* if (product == tomato) {
-                    remove(mixer);
-                    NewProduct mixerWithTomato = new NewProduct("mixer_tomato", false,
-                            "img/mixer_tomato.png", "img/mixer_tomato.png",
-                            "img/mixer_tomato.png", "img/mixer_tomato.png");
-                    mixerWithTomato.setBounds(mixer.getBounds());
-                    add(mixerWithTomato);
-                    this.mixer = mixerWithTomato;
-                    tomatoInMixer = true;
-                    //checkAndSwitchLevel();
-                    repaint();
-                }*/
-                checkAndSwitchLevel();
+                checkDaleeAvailable();
                 return;
             }
         }
@@ -580,16 +593,45 @@ int d =  random.nextInt(2) + 1;
 
         // Компонент generatedDrink размещается внутри стакана
         // Позиция и размер настроены так, чтобы имитировать заполнение стакана
-      //  generatedDrink.setBounds(1000, 10, 250, 300); // Корректируйте по необходимости
-      //  add(generatedDrink);
+        //  generatedDrink.setBounds(1000, 10, 250, 300); // Корректируйте по необходимости
+        //  add(generatedDrink);
         //generatedDrink.setPreferredSize(new Dimension(1000, 10));
     }
 
-    @Override
-    public void mouseEntered(MouseEvent event) {}
+    private final Cursor HAND_CURSOR = new Cursor(Cursor.HAND_CURSOR);
+    private final Cursor DEFAULT_CURSOR = new Cursor(Cursor.DEFAULT_CURSOR);
 
     @Override
-    public void mouseExited(MouseEvent event) {}
+    public void mouseEntered(MouseEvent event) {
+        Object source = event.getSource();
+        if(source == daleeArrow) {
+         // System.out.println(String.format("iceInCup:%b, teaInCup:%b, tapiokaInCup:%b, trubInCup:%b, vanilInCup:%b, sugarInCup :%b, milkInCup:%b",
+       //           iceInCup, teaInCup, tapiokaInCup, trubInCup, vanilInCup, sugarInCup, milkInCup));
+            boolean daleeAvailable = iceInCup && teaInCup && tapiokaInCup && trubInCup && vanilInCup && sugarInCup && milkInCup;
+            if(daleeAvailable) {
+                daleeArrow.setCursor(HAND_CURSOR);
+            }
+        }
+        else if(source == againArrow) {
+            againArrow.setCursor(HAND_CURSOR);
+        }
+    }
+
+    @Override
+    public void mouseExited(MouseEvent event) {
+        Object source = event.getSource();
+        if(source == daleeArrow) {
+         // System.out.println(String.format("iceInCup:%b, teaInCup:%b, tapiokaInCup:%b, trubInCup:%b, vanilInCup:%b, sugarInCup :%b, milkInCup:%b",
+          //        iceInCup, teaInCup, tapiokaInCup, trubInCup, vanilInCup, sugarInCup, milkInCup));
+            boolean daleeAvailable = iceInCup && teaInCup && tapiokaInCup && trubInCup && vanilInCup && sugarInCup && milkInCup;
+            if(daleeAvailable) {
+                daleeArrow.setCursor(DEFAULT_CURSOR);
+            }
+        }
+        else if(source == againArrow) {
+            againArrow.setCursor(DEFAULT_CURSOR);
+        }
+    }
 
     @Override
     public void mousePressed(MouseEvent event) {}
@@ -597,7 +639,7 @@ int d =  random.nextInt(2) + 1;
     @Override
     public void mouseReleased(MouseEvent event) {
         Object source = event.getSource();
-        System.out.println("mouseReleased from " + source);
+      //System.out.println("mouseReleased from " + source);
         /*if (source == knife) {
             if (boardWithCheese != null && boardWithCheese.getName().equals("board_cheese_1")) {
                 Rectangle knifeBounds = knife.getBounds();
@@ -638,7 +680,7 @@ int d =  random.nextInt(2) + 1;
             }
 
             if (source == ice2 && cup1.getBounds().contains(x, y) && productsWithQuantityPopup.contains(product)) {
-               showQuantityPopup(ice2, x, y, event);
+                showQuantityPopup(ice2, x, y, event);
 
                 return;
             }
@@ -670,8 +712,8 @@ int d =  random.nextInt(2) + 1;
 
             if (source == vanil && cup1.getBounds().contains(x, y) && productsWithQuantityPopup.contains(product)) {
                 showQuantityPopup(vanil, x, y, event);
-            vanilInCup = true;
-            return;
+                vanilInCup = true;
+                return;
             }
 
             if (source == topioka && cup1.getBounds().contains(x, y) && productsWithQuantityPopup.contains(product)) {
@@ -701,7 +743,7 @@ int d =  random.nextInt(2) + 1;
 
             //********ТРУБОЧКИ**************************************************************
             if (source == trub1 && cup1.getBounds().contains(x, y) ) {
-           // if (product == trub1) {
+                // if (product == trub1) {
 //  eggsInDish = true;
                 NewProduct graterWithCheese = new NewProduct("trub1_in_cup", false,
                         "img/trubochka1.png", "img/trubochka1.png",
@@ -710,14 +752,14 @@ int d =  random.nextInt(2) + 1;
                 add(graterWithCheese);
                 this.cup1 = graterWithCheese;
                 trubInCup = true;
-                //checkAndSwitchLevel();
+                amountEntered.put(trub1, 1);
+                checkDaleeAvailable();
                 repaint();
-                //checkAndSwitchLevel();
             }
-        //}
+            //}
 
             if (source == trub2 && cup1.getBounds().contains(x, y) ) {
-           // if (product == trub2) {
+                // if (product == trub2) {
 //  eggsInDish = true;
                 NewProduct graterWithCheese = new NewProduct("trub2_in_cup", false,
                         "img/trubochka2.png", "img/trubochka2.png",
@@ -726,13 +768,13 @@ int d =  random.nextInt(2) + 1;
                 add(graterWithCheese);
                 this.cup1 = graterWithCheese;
                 trubInCup = true;
-                //checkAndSwitchLevel();
+                amountEntered.put(trub2, 1);
+                checkDaleeAvailable();
                 repaint();
-                //checkAndSwitchLevel();
             }
 
             if (source == trub3 && cup1.getBounds().contains(x, y) ) {
-          //  if (product == trub3) {
+                //  if (product == trub3) {
 //  eggsInDish = true;
                 NewProduct graterWithCheese = new NewProduct("trub3_in_cup", false,
                         "img/trubochka3.png", "img/trubochka3.png",
@@ -741,14 +783,12 @@ int d =  random.nextInt(2) + 1;
                 add(graterWithCheese);
                 this.cup1 = graterWithCheese;
                 trubInCup = true;
-                //checkAndSwitchLevel();
+                amountEntered.put(trub3, 1);
+                checkDaleeAvailable();
                 repaint();
-                //checkAndSwitchLevel();
             }
 
 // ********ТРУБОЧКИ**************************************************************
-
-
         }
     }
 
@@ -763,59 +803,105 @@ int d =  random.nextInt(2) + 1;
         }
     }
 
-    private void checkAndSwitchLevel() {
-        MistakeCounter mistakeCounter = MistakeCounter.getSharedInstance();
-       /*f (iceInCup&&teaInCup&&tapiokaInCup&&trubInCup&&vanilInCup&&sugarInCup&&milkInCup)
- {
+    private void checkDaleeAvailable() {
+    //  System.out.println(String.format("iceInCup:%b, teaInCup:%b, tapiokaInCup:%b, trubInCup:%b, vanilInCup:%b, sugarInCup :%b, milkInCup:%b",
+      //        iceInCup, teaInCup, tapiokaInCup, trubInCup, vanilInCup, sugarInCup, milkInCup));
+        boolean daleeAvailable = iceInCup && teaInCup && tapiokaInCup && trubInCup && vanilInCup && sugarInCup && milkInCup;
+        if (daleeAvailable) {
+            if(amountEntered.containsKey(ice)) {
+                int iceAmount = amountEntered.get(ice);
+                mistakeCounter2.setIceAmount(iceAmount, Recipe_2.IceKind.ICE1);
+            }
 
-        }*/
+            if(amountEntered.containsKey(ice2)) {
+                int ice2Amount = amountEntered.get(ice2);
+                mistakeCounter2.setIceAmount(ice2Amount, Recipe_2.IceKind.ICE2);
+            }
+
+            if(amountEntered.containsKey(ice3)) {
+                int ice3Amount = amountEntered.get(ice3);
+                mistakeCounter2.setIceAmount(ice3Amount, Recipe_2.IceKind.ICE3);
+            }
+
+            if(amountEntered.containsKey(tea)) {
+                int teaAmount = amountEntered.get(tea);
+                mistakeCounter2.setTeaAmount(teaAmount, Recipe_2.TeaKind.TEA1);
+            }
+
+            if(amountEntered.containsKey(tea2)) {
+                int tea2Amount = amountEntered.get(tea2);
+                mistakeCounter2.setTeaAmount(tea2Amount, Recipe_2.TeaKind.TEA2);
+            }
+
+            if(amountEntered.containsKey(topioka)) {
+                int tapiokaAmount = amountEntered.get(topioka);
+                mistakeCounter2.setTapiokaAmount(tapiokaAmount, Recipe_2.TapiokaKind.TAPIOKA1);
+            }
+
+            if(amountEntered.containsKey(topioka2)) {
+                int tapioka2Amount = amountEntered.get(topioka2);
+                mistakeCounter2.setTapiokaAmount(tapioka2Amount, Recipe_2.TapiokaKind.TAPIOKA2);
+            }
+
+            if(amountEntered.containsKey(topioka3)) {
+                int tapioka3Amount = amountEntered.get(topioka3);
+                mistakeCounter2.setTapiokaAmount(tapioka3Amount, Recipe_2.TapiokaKind.TAPIOKA3);
+            }
+
+            int vanillaAmount = amountEntered.get(vanil);
+            mistakeCounter2.setVanillaAmount(vanillaAmount);
+
+            int sugarAmount = amountEntered.get(sugar);
+            mistakeCounter2.setSugarAmount(sugarAmount);
+
+            int milkAmount = amountEntered.get(milk);
+            mistakeCounter2.setMilkAmount(milkAmount);
+
+            if(amountEntered.containsKey(trub1)) {
+                int trub1Amount = amountEntered.get(trub1);
+                mistakeCounter2.setTrubAmount(trub1Amount, Recipe_2.TrubKind.TRUB1);
+            }
+
+            if(amountEntered.containsKey(trub2)) {
+                int trub2Amount = amountEntered.get(trub2);
+                mistakeCounter2.setTrubAmount(trub2Amount, Recipe_2.TrubKind.TRUB2);
+            }
+
+            if(amountEntered.containsKey(trub3)) {
+                int trub3Amount = amountEntered.get(trub3);
+                mistakeCounter2.setTrubAmount(trub3Amount, Recipe_2.TrubKind.TRUB3);
+            }
+
+            daleeArrow.setTargeted(true);
+        }
     }
 
     @Override
     public void mouseClicked(MouseEvent event) {
         Object source = event.getSource();
         if(source == againArrow) {
-
-                layersContainer.showLayer(LayersContainer.Layer.LEVEL_2_2);
-
+         // System.out.println("Reset!");
+            layersContainer.remove(this);
+            layersContainer.add(new Level_2(), String.valueOf(LayersContainer.Layer.LEVEL_2));
+            layersContainer.showLayer(LayersContainer.Layer.LEVEL_2);
         }
-        if(source == daleeArrow) {
-            if (iceInCup&&teaInCup&&tapiokaInCup&&trubInCup&&vanilInCup&&sugarInCup&&milkInCup)
-            {
+        else if(source == daleeArrow) {
+        //  System.out.println(String.format("iceInCup:%b, teaInCup:%b, tapiokaInCup:%b, trubInCup:%b, vanilInCup:%b, sugarInCup :%b, milkInCup:%b",
+      //            iceInCup, teaInCup, tapiokaInCup, trubInCup, vanilInCup, sugarInCup, milkInCup));
+            boolean daleeAvailable = iceInCup && teaInCup && tapiokaInCup && trubInCup && vanilInCup && sugarInCup && milkInCup;
+            if (daleeAvailable) {
                 layersContainer.showLayer(LayersContainer.Layer.OVER_2);
             }
-
-        }    }
-    /*@Override
-    public void mouseClicked(MouseEvent event) {}*/
-//****************************************************************************************************************************************************************************
-    // Метод для добавления продукта в стакан (или выполнения другого действия)
-    public void addProduct(NewProduct product, int quantity) {
-        // Сохраняем текущее состояние перед добавлением
-        saveCurrentState();
-        // Добавляем продукт (реализация зависит от игровой логики)
-        amountEntered.put(product, quantity);
-        // Обновляем отображение (если необходимо)
-        repaint();
-    }
-
-    // Метод для отмены последнего действия (шаг назад)
-    public void performBackStep() {
-        if (!history.isEmpty()) {
-            // Восстанавливаем предыдущее состояние из стека
-            amountEntered = history.pop();
-            // Обновляем отображение
-            repaint();
         }
     }
 
-    // Метод для сохранения текущего состояния в стек истории
-    private void saveCurrentState() {
-        // Создаем копию текущего состояния amountEntered
-        Map<NewProduct, Integer> currentState = new HashMap<>(amountEntered);
-        history.push(currentState);
+
+
+    public static void main(String...args) {
+        JFrame f = new JFrame();
+        f.add(new Level_2());
+        f.setSize(1360, 770);
+        f.setVisible(true);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-    //*************************************************************************************************************************************************************************************
 }
-
-

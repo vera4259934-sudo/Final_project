@@ -413,28 +413,28 @@ public class Level_1_2 extends JLayeredPane implements MouseListener, ActionList
         Object source = event.getSource();
         if (source == trayWithPizza) {
             if (state == State.RAW_PIZZA) {
-                System.out.println("pressed on trayWith raw Pizza");
+               // System.out.println("pressed on trayWith raw Pizza");
                 oven.setTargeted(true);
             }
             else if(state == State.COOKED_PIZZA) {
-                System.out.println("pressed on trayWith cooked Pizza");
+            //    System.out.println("pressed on trayWith cooked Pizza");
                 plate.setTargeted(true);
             }
         }
         else if (source == oil) {
-            System.out.println("pressed on oil");
+          //  System.out.println("pressed on oil");
             //if(state == State.PIZZA_ON_PLATE) {
             plate.setTargeted(true);
             //}
         }
         else if (source == basil) {
-            System.out.println("pressed on basil");
+           // System.out.println("pressed on basil");
             //if(state == State.OIL_ADDED) {
             plate.setTargeted(true);
             //}
         }
         else if (source == knife) {
-            System.out.println("pressed on knife");
+          //  System.out.println("pressed on knife");
             //if(state == State.BASIL_ADDED) {
             plate.setTargeted(true);
             //}

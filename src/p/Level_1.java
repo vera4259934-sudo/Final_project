@@ -206,7 +206,7 @@ public class Level_1 extends JLayeredPane implements MouseListener, ActionListen
     @Override
     public void actionPerformed(ActionEvent event) {
         Object source = event.getSource();
-        System.out.println("actionPerformed from " + source);
+       // System.out.println("actionPerformed from " + source);
         for (Map.Entry<NewProduct, QuantityPopup> entry : quantityPopups.entrySet()) {
             NewProduct product = entry.getKey();
             QuantityPopup quantityPopup = entry.getValue();
@@ -216,7 +216,7 @@ public class Level_1 extends JLayeredPane implements MouseListener, ActionListen
                 repaint();
                 product.setPartialSize();
                 product.returnToOriginalLocation();
-                System.out.println(product.getName() + ": " + quantityPopup.getValue());
+             //   System.out.println(product.getName() + ": " + quantityPopup.getValue());
                 int newAmount;
                 if(amountEntered.containsKey(product)) {
                     newAmount = amountEntered.get(product);
@@ -226,7 +226,7 @@ public class Level_1 extends JLayeredPane implements MouseListener, ActionListen
                     newAmount = quantityPopup.getValue();
                 }
                 amountEntered.put(product, newAmount);
-                System.out.println("\t" + product.getName() + ": " + quantityPopup.getValue());
+              //  System.out.println("\t" + product.getName() + ": " + quantityPopup.getValue());
 
                 if (product == milk) {
                     milkInDish = true;
@@ -334,7 +334,7 @@ public class Level_1 extends JLayeredPane implements MouseListener, ActionListen
     @Override
     public void mouseReleased(MouseEvent event) {
         Object source = event.getSource();
-        System.out.println("mouseReleased from " + source);
+      //  System.out.println("mouseReleased from " + source);
         if (source == knife) {
             if (boardWithCheese != null && boardWithCheese.getName().equals("board_cheese_1")) {
                 Rectangle knifeBounds = knife.getBounds();
@@ -437,8 +437,8 @@ public class Level_1 extends JLayeredPane implements MouseListener, ActionListen
     }
 
     private void checkDaleeAvailable() {
-        System.out.println(String.format("milk: %b, eggs: %b, flour: %b, tomato: %b, cheese1: %b, cheese2: %b",
-                milkInDish, eggsInDish, flourInDish, tomatoInMixer, cheeseInGrater, cheeseCutOnBoard));
+       // System.out.println(String.format("milk: %b, eggs: %b, flour: %b, tomato: %b, cheese1: %b, cheese2: %b",
+              //  milkInDish, eggsInDish, flourInDish, tomatoInMixer, cheeseInGrater, cheeseCutOnBoard));
         MistakeCounter mistakeCounter = MistakeCounter.getSharedInstance();
         boolean daleeAvailable = tomatoInMixer &&
                 milkInDish && flourInDish && eggsInDish &&

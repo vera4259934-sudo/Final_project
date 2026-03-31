@@ -131,7 +131,7 @@ public class Over extends JPanel {
 
         String fontName = "Arial";
         try {
-            InputStream fontStream = getClass().getClassLoader().getResourceAsStream("src/Caveat.ttf");
+            InputStream fontStream = getClass().getClassLoader().getResourceAsStream("font/Caveat.ttf");
             if(fontStream != null) {
                 Font f = Font.createFont(Font.TRUETYPE_FONT, fontStream);
                 GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(f);

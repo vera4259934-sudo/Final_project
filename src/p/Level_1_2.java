@@ -56,7 +56,7 @@ public class Level_1_2 extends JLayeredPane implements MouseListener, ActionList
     private final Tool daleeArrow;
 
     public Level_1_2() {
-        backgroundIcon = new ImageIcon(getClass().getClassLoader().getResource("img/level1background.png"));
+        backgroundIcon = new ImageIcon(getClass().getClassLoader().getResource("img/Main_screen.png"));
 
         trayWithPizza = new NewProduct("tray_cheese2", true,
                 "img/tray_cheese2.png", "img/tray_cheese2.png",

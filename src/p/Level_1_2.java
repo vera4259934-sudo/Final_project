@@ -83,7 +83,7 @@ public class Level_1_2 extends JLayeredPane implements MouseListener, ActionList
                 "img/knife2.png", "img/knife2.png");
 
         basil = new NewProduct("basil", false,
-                "img/basil.png", "img/basil.png",
+                "img/basil.png", "img/basil_selected.png",
                 "img/basil.png", "img/basil.png");
 
         oil = new NewProduct("oil", false,

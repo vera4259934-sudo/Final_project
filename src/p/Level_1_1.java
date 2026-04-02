@@ -294,15 +294,15 @@ public class Level_1_1 extends JLayeredPane implements MouseListener {
                 "img/mixer_tomato.png", "img/mixer_tomato.png",
                 "img/mixer.png", "img/mixer.png");
         board = new NewProduct("board", false,
-                "img/board_cheese_12.png", "img/board_cheese_12.png",
-                "img/board.png", "img/board.png");
+                "img/board_cheese_12.png", "img/board_cheese_12_selected.png",
+                "img/board.png", "img/board_selected.png");
         dish = new NewProduct("dish", true,
-                "img/dish_dough.png", "img/dish_dough.png",
+                "img/dish_dough.png", "img/dish_dough_selected.png",
                 "img/dish.png", "img/dish.png");
         grater = new NewProduct("grater", false,
-                "img/grater_cheese.png", "img/grater_cheese.png",
+                "img/grater_cheese.png", "img/grater_cheese_selected.png",
                 "img/grater.png", "img/grater.png");
-        spoon = new NewProduct("spoon", false,
+       spoon = new NewProduct("spoon", false,
                 "img/spoon.png", "img/spoon_selected.png",
                 "img/spoon.png", "img/spoon_selected.png");
         //tray = new NewProduct("tray", false,
@@ -395,7 +395,7 @@ public class Level_1_1 extends JLayeredPane implements MouseListener {
                 Tool newTray = new Tool("tray_doagh_n", false,
                         "img/tray_doagh_n.png",
                         "img/tray_doagh_n.png",
-                        "img/tray_green.png");
+                        "img/tray_doagh_n_green.png");
                 newTray.setBounds(trayBounds);
                 this.tray = newTray;
                 add(tray);
@@ -421,7 +421,7 @@ public class Level_1_1 extends JLayeredPane implements MouseListener {
                 Tool newTray = new Tool("tray_doagh", false,
                         "img/tray_doagh.png",
                         "img/tray_doagh.png",
-                        "img/tray_green.png");
+                        "img/tray_doagh_green.png");
                 newTray.setBounds(trayBounds);
                 this.tray = newTray;
                 add(tray);
@@ -462,7 +462,7 @@ public class Level_1_1 extends JLayeredPane implements MouseListener {
                 Tool newTray = new Tool("tray_tomato_n", false,
                         "img/tray_tomato_n.png",
                         "img/tray_tomato_n.png",
-                        "img/tray_green.png");
+                        "img/tray_tomato_n_green.png");
                 newTray.setBounds(trayBounds);
                 this.tray = newTray;
                 add(tray);
@@ -490,7 +490,7 @@ public class Level_1_1 extends JLayeredPane implements MouseListener {
                 Tool newTray = new Tool("tray_tomato", false,
                         "img/tray_tomato.png",
                         "img/tray_tomato.png",
-                        "img/tray_green.png");
+                        "img/tray_tomato_green.png");
                 newTray.setBounds(trayBounds);
                 this.tray = newTray;
                 add(tray);
@@ -516,7 +516,7 @@ public class Level_1_1 extends JLayeredPane implements MouseListener {
                 remove(grater);
                 grater.removeMouseListener(this);
                 NewProduct emptyGrater = new NewProduct("grater", false,
-                        "img/grater.png", "img/grater.png",
+                        "img/grater.png", "img/grater_selected.png",
                         "img/grater.png", "img/grater.png");
                 //emptyGrater.setBounds(graterPos.x, graterPos.y, 370, 230);
                 grater.returnToOriginalLocation();
@@ -531,7 +531,7 @@ public class Level_1_1 extends JLayeredPane implements MouseListener {
                 Tool newTray = new Tool("tray_cheese1", false,
                         "img/tray_cheese1.png",
                         "img/tray_cheese1.png",
-                        "img/tray_green.png");
+                        "img/tray_cheese1_green.png");
                 newTray.setBounds(trayBounds);
                 this.tray = newTray;
                 add(tray);
@@ -570,7 +570,7 @@ public class Level_1_1 extends JLayeredPane implements MouseListener {
                 Tool newTray = new Tool("tray_cheese2", false,
                         "img/tray_cheese2.png",
                         "img/tray_cheese2.png",
-                        "img/tray_green.png");
+                        "img/tray_cheese2_green.png");
                 newTray.setBounds(trayBounds);
                 this.tray = newTray;
                 add(tray);

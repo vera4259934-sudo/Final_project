@@ -25,14 +25,14 @@ public class Level_1 extends JLayeredPane implements MouseListener, ActionListen
     private final NewProduct cheese;
     private final NewProduct cheese2;
     private final NewProduct tomato;
-    private final NewProduct ketchup;
-    private final NewProduct oil;
+  //  private final NewProduct ketchup;
+  //  private final NewProduct oil;
     private Tool mixer;
     private Tool board;
     private Tool grater;
     //private NewProduct dish;
     private Tool dish;
-    private NewProduct spoon;
+ //   private NewProduct spoon;
     private NewProduct knife;
     //private NewProduct boardWithCheese;
     private Tool boardWithCheese;
@@ -56,8 +56,8 @@ public class Level_1 extends JLayeredPane implements MouseListener, ActionListen
                 "img/flour.png", "img/flour_selected.png",
                 "img/flourPartial.png", "img/flourPartial_selected.png");
         milk = new NewProduct("milk", true,
-                "img/milkFull.png", "img/milkFullSelected.png",
-                "img/milkPartial.png", "img/milkPartialSelected.png");
+                "img/milk.png", "img/milk_selected.png",
+                "img/milk1s3.png", "img/milk1s3_selected.png");
         eggs = new NewProduct("eggs", true,
                 "img/egg.png", "img/egg_selected.png",
                 "img/eggPartical.png", "img/eggPartical_selected.png");
@@ -70,12 +70,13 @@ public class Level_1 extends JLayeredPane implements MouseListener, ActionListen
         tomato = new NewProduct("tomato", true,
                 "img/tomato.png", "img/tomato_selected.png",
                 "img/tomato.png", "img/tomato_selected.png");
-        ketchup = new NewProduct("ketchup", true,
-                "img/ketchup.png", "img/ketchup_selected.png",
-                "img/ketchup.png", "img/ketchup_selected.png");
-        oil = new NewProduct("oliveOil", true,
-                "img/oil.png", "img/oil_selected.png",
-                "img/oil.png", "img/oil_selected.png");
+      //
+        //  ketchup = new NewProduct("ketchup", true,
+        //        "img/ketchup.png", "img/ketchup_selected.png",
+ //               "img/ketchup.png", "img/ketchup_selected.png");
+     //   oil = new NewProduct("oliveOil", true,
+        //        "img/oil.png", "img/oil_selected.png",
+          //      "img/oil.png", "img/oil_selected.png");
         //mixer = new NewProduct("mixer", false,
         //        "img/mixer.png", "img/mixer.png",
         //        "img/mixer.png", "img/mixer.png");
@@ -104,9 +105,9 @@ public class Level_1 extends JLayeredPane implements MouseListener, ActionListen
                 "img/grater.png",
                 "img/grater_selected.png",
                 "img/grater_green.png");
-        spoon = new NewProduct("spoon", true,
-                "img/spoon.png", "img/spoon_selected.png",
-                "img/spoon.png", "img/spoon_selected.png");
+      //  spoon = new NewProduct("spoon", true,
+         //       "img/spoon.png", "img/spoon_selected.png",
+        //        "img/spoon.png", "img/spoon_selected.png");
         knife = new NewProduct("knife", true,
                 "img/kneef.png", "img/kneef_selected.png",
                 "img/kneef.png", "img/kneef_selected.png");
@@ -178,10 +179,10 @@ public class Level_1 extends JLayeredPane implements MouseListener, ActionListen
         add(tomato);
         tomato.setBounds(1150, 370, 222, 208);
         tomato.addMouseListener(this);
-        add(ketchup);
-        ketchup.setBounds(500, 310, 155, 220);
-        add(oil);
-        oil.setBounds(550, 290, 220, 226);
+      //  add(ketchup);
+   //     ketchup.setBounds(500, 310, 155, 220);
+     //   add(oil);
+      //  oil.setBounds(550, 290, 220, 226);
         add(mixer);
         mixer.setBounds(25, 300, 220, 290);
         add(board);
@@ -190,8 +191,8 @@ public class Level_1 extends JLayeredPane implements MouseListener, ActionListen
         grater.setBounds(750, 300, 370, 230);
         add(dish);
         dish.setBounds(540, 505, 245, 230);
-        add(spoon);
-        spoon.setBounds(830, 600, 160, 160);
+     //   add(spoon);
+      //  spoon.setBounds(830, 600, 160, 160);
         add(knife);
         knife.setBounds(305, 630, 260, 50);
         knife.addMouseListener(this);
@@ -242,7 +243,7 @@ public class Level_1 extends JLayeredPane implements MouseListener, ActionListen
                     boardWithCheese = new Tool("board_cheese_1", false,
                             "img/board_cheese_1.png",
                             "img/board_cheese_12_selected.png",
-                            "img/board_green.png");
+                            "img/board_cheese_12_green.png");
                     boardWithCheese.setBounds(board.getBounds());
                     add(boardWithCheese);
                     this.board = boardWithCheese;

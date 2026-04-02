@@ -59,8 +59,8 @@ public class Level_1_2 extends JLayeredPane implements MouseListener, ActionList
         backgroundIcon = new ImageIcon(getClass().getClassLoader().getResource("img/Main_screen.png"));
 
         trayWithPizza = new NewProduct("tray_cheese2", true,
-                "img/tray_cheese2.png", "img/tray_cheese2.png",
-                "img/tray_cheese2.png", "img/tray_cheese2.png");
+                "img/tray_cheese2.png", "img/tray_cheese2_selected.png",
+                "img/tray_cheese2.png", "img/tray_cheese2_selected.png");
 
         //oven = new NewProduct("oven", false,
         //    "img/oven.png", "img/oven.png",
@@ -79,8 +79,8 @@ public class Level_1_2 extends JLayeredPane implements MouseListener, ActionList
                 "img/plate_green.png");
 
         knife = new NewProduct("knife2", false,
-                "img/knife2.png", "img/knife2.png",
-                "img/knife2.png", "img/knife2.png");
+                "img/knife2.png", "img/knife2_selected.png",
+                "img/knife2.png", "img/knife2_selected.png");
 
         basil = new NewProduct("basil", false,
                 "img/basil.png", "img/basil_selected.png",
@@ -175,9 +175,9 @@ public class Level_1_2 extends JLayeredPane implements MouseListener, ActionList
                 timerLabel.setVisible(false);
                 NewProduct cookedPizza = new NewProduct("pizza", true,
                         "img/pizza.png",
+                        "img/pizza_selected.png",
                         "img/pizza.png",
-                        "img/pizza.png",
-                        "img/pizza.png");
+                        "img/pizza_selected.png");
                 trayWithPizza.returnToOriginalLocation();
                 cookedPizza.setBounds(trayWithPizza.getBounds());
                 remove(trayWithPizza);
